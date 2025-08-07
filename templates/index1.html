@@ -1,0 +1,451 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <spline-viewer url="https://prod.spline.design/aq76wNo6TVjgSUYh/scene.splinecode"></spline-viewer>
+    <title>Music Recommendation System</title>
+    <style>*{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins',sans-serif;
+    }
+    .header{
+        width: 100%;
+        height: 100vh;
+        background-image: linear-gradient(rgba(5,0,136,0.5),rgba(5,0,136,0.5)),url(=);
+        background-position: center;
+        background-size: cover;
+        overflow-x: hidden;
+    }
+    
+    nav{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding: 18px 8%;
+        transition: background 1s;
+    }
+    
+    nav .logo{
+        display: flex;
+        align-items: center;
+        font-size: 26px;
+        font-weight: 600;
+        color: #FFF;
+    }
+    
+    nav .logo img{
+        width: 40px;
+        margin-right: 10px;
+        
+    }
+    
+    nav ul li{
+        display: inline-block;
+        list-style: none;
+        margin: 10px 20px;
+        
+    }
+    
+    nav ul li a{
+        text-decoration: none;
+        color: #FFF;
+        font-weight: 800;
+    }
+    nav:hover{
+        background: #fff;
+    }
+    
+    nav:hover .logo{
+        color: #333;
+    }
+    
+    nav:hover ul li a{
+        color: #333;
+    }
+    
+    .content{
+        margin-top: 9%;
+        margin-left: 9%;
+        color: #FFF;
+    
+    
+    }
+    
+    .content h1{
+        font-size: 120PX;
+        font-weight: 600;
+        line-height: 140px;
+    }
+    
+    .content p{
+        max-width: 500px;
+        line-height: 28px;
+        opacity: 0;
+    }
+    
+    .links{
+        margin-top: 30px;
+        opacity: 0;
+    }
+    .links a{
+        color: #FFF;
+        display: inline-block;
+        text-decoration: none;
+    
+    }
+        .links a:hover{
+        color: blue;
+
+    }
+    .btn:hover{
+        background-color: rgb(0, 195, 255);
+    }
+    .btn{
+        border: 2px solid #fff;
+        padding: 10px 35px;
+        border-radius: 30px;
+        margin-right: 15px;
+        font-weight: 700;
+    }
+    
+    .slide-left{
+        animation: slideleft 1s linear forwards;
+        
+    }
+    
+    .content h1{
+        font-family: Brush Script MT,cursive;
+    }
+    
+    @keyframes slideleft{
+        0%{
+            transform: translate(100px);
+            opacity: 0;
+        }
+        100%{
+            transform: translate(0px);
+            opacity: 1;
+        }
+        
+    }
+    
+    p.slide-left{
+        animation-delay: 1s;
+    }
+    .links.slide-left{
+        animation-delay: 2s;
+        color:blue;
+    }
+    .output{
+        color:white;
+        font-family:"cursive"
+        }
+     .output1{
+         margin-top:20px;
+        color:white;
+         display: inline-block;
+        font-family:"cursive"
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <nav>
+            <div class="logo">
+                <img src="static/img2.png" alt=""> 
+                <span>Moodify</span>
+            </div>
+            <ul>
+                <li><a href="#">HOME</a></li>
+                <li><a href="#">FEATURES</a></li>
+                <li><a href="#">CONTACT</a></li>
+                <li><a href="http://localhost:5000/templates/join_page">TEAM-INFO</a></li>
+                
+                <li><a href="#">SUPPORT</a></li>
+            </ul>
+        </nav>
+
+        <div class="content">
+            <h1 class="slide-left">To Embrace your<br>Finifugals....!</h1>
+            <div class="links slide-left">
+                <a href="http://localhost:5000/camera" class="btn">Lets Start</a>
+            </div>
+        </div>
+    </br>
+    <div class="output" >
+        {% if final_output %}
+    <h2 style="font-family:Bio-Rhyme">Your Emotion is {{final_output}}</h2>
+        <div class="output1" >
+        <a href="http://localhost:5000/movies/{{final_output}}" class="btn">Movies</a>
+         <a href="http://localhost:5000/songs/{{final_output}}" class="btn">Songs</a>
+            </div>
+    {% endif %}
+      </div>
+
+    </div>
+
+        <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.82/build/spline-viewer.js"></script>
+
+</body>
+</html> -->
+
+
+<!--      yeah right hai      <body>
+    <div class="spline-bg">
+        <spline-viewer url="https://prod.spline.design/POMZfKyBbAB7Bx-W/scene.splinecode"></spline-viewer>
+    </div>
+
+    <div class="header">
+        <nav>
+            <div class="logo">
+                <img src="static/img2.png" alt=""> 
+                <span>Moodify</span>
+            </div>
+            <ul>
+                <li><a href="#">HOME</a></li>
+                <li><a href="http://localhost:5000/templates/about">ABOUT</a></li>
+                <li><a href="http://localhost:5000/templates/contact">CONTACT</a></li>
+                <li><a href="http://localhost:5000/templates/join_page">TEAM-INFO</a></li> 
+                
+            </ul>
+        </nav>
+
+        <div class="content">
+            
+            <div class="links slide-left">
+                <a href="http://localhost:5000/camera" class="btn">Lets Start</a>
+            </div>
+        </div>
+
+        </br>
+        <div class="output">
+            {% if final_output %}
+                <h2 style="font-family:Bio-Rhyme">Your Emotion is {{final_output}}</h2>
+                <div class="output1">
+                    <a href="http://localhost:5000/movies/{{final_output}}" class="btn">Movies</a>
+                    <a href="http://localhost:5000/songs/{{final_output}}" class="btn">Songs</a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.82/build/spline-viewer.js"></script>
+    <style>
+        .spline-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+
+        }
+
+        .spline-bg spline-viewer {
+            width: 100%;
+            height: 100%;
+        }
+
+       
+        *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins',sans-serif;
+    }
+    .header{
+        position: relative;
+            z-index: 1;
+        width: 100%;
+        height: 100vh;
+        
+        background-position: center;
+        background-size: cover;
+        overflow-x: hidden;
+    }
+    
+    nav{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding: 5px 8%;
+        
+        background: rgb(19,0,36);
+        transition: background 1s;
+    }
+    
+    nav .logo{
+        display: flex;
+        align-items: center;
+        font-size: 26px;
+        font-weight: 600;
+        color: #FFF;
+    }
+    
+    nav .logo img{
+        width: 40px;
+        margin-right: 10px;
+        
+    }
+    
+    nav ul li{
+        display: inline-block;
+        list-style: none;
+        margin: 10px 20px;
+        
+    }
+    
+    nav ul li a{
+        text-decoration: none;
+        color: #edeff3;
+        font-weight: 800;
+    }
+    nav:hover{
+        background: rgb(19,0,36);
+    }
+    
+    nav:hover .logo{
+        color: #333;
+    }
+    
+    nav:hover ul li a{
+        color: #333;
+    }
+    
+    .content{
+        margin-top: 9%;
+        margin-left: 9%;
+        color: #FFF;
+    
+    
+    }
+    
+    .content h1{
+        font-size: 120PX;
+        font-weight: 600;
+        line-height: 140px;
+    }
+    
+    .content p{
+        max-width: 500px;
+        line-height: 28px;
+        opacity: 0;
+    }
+    
+    .links{
+        margin-top: 30px;
+        opacity: 0;
+    }
+    .links a{
+        color: #FFF;
+        display: inline-block;
+        text-decoration: none;
+    
+    }
+        .links a:hover{
+        color: blue;
+
+    }
+    .btn:hover{
+        background-color: rgb(0, 195, 255);
+    }
+    .btn{
+        border: 2px solid #fff;
+        background-color: rgb(17, 18, 18);
+        padding: 10px 35px;
+        border-radius: 30px;
+        margin-right: 2px;
+        margin-top: 300px;
+        font-weight: 700;
+    }
+    
+    .slide-left{
+        animation: slideleft 1s linear forwards;
+        
+    }
+    
+    .content h1{
+        font-family: Brush Script MT,cursive;
+    }
+  
+    
+    @keyframes slideleft{
+        0%{
+            transform: translate(100px);
+            opacity: 0;
+        }
+        100%{
+            transform: translate(0px);
+            opacity: 1;
+        }
+        
+    }
+    
+    p.slide-left{
+        animation-delay: 1s;
+    }
+    .links.slide-left{
+        animation-delay: 2s;
+        color:blue;
+    }
+    .output{
+        color:white;
+        font-family:"cursive"
+        }
+     .output1{
+         margin-top:20px;
+        color:white;
+         display: inline-block;
+        font-family:"cursive"
+        }
+    </style>
+</body>
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Moodify - Capture Emotion</title>
+</head>
+<body>
+    <h1>Capture Your Mood</h1>
+    <video id="video" width="320" height="240" autoplay></video>
+    <canvas id="canvas" width="320" height="240" style="display:none;"></canvas>
+    <button onclick="capture()">Capture</button>
+
+    <form id="resultForm" action="/result" method="POST" style="display:none;">
+        <input type="hidden" name="emotion" id="emotionInput">
+    </form>
+
+    <script>
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(stream => {
+                document.getElementById('video').srcObject = stream;
+            });
+
+        function capture() {
+            const video = document.getElementById('video');
+            const canvas = document.getElementById('canvas');
+            const context = canvas.getContext('2d');
+            context.drawImage(video, 0, 0, 320, 240);
+            const dataURL = canvas.toDataURL('image/jpeg');
+
+            fetch('/predict', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ image: dataURL })
+            })
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById('emotionInput').value = data.prediction;
+                document.getElementById('resultForm').submit();
+            });
+        }
+    </script>
+</body>
+</html>
