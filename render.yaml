@@ -3,7 +3,7 @@ services:
     name: moodify
     env: python
     buildCommand: ""
-    startCommand: gunicorn app:app
+    startCommand: gunicorn app:app 
     envVars:
       - key: WEB_CONCURRENCY
         value: 1
