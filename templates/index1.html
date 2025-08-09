@@ -411,12 +411,30 @@
 <head>
     <meta charset="UTF-8">
     <title>Moodify - Capture Emotion</title>
+    <link rel="stylesheet" href="/static/button_style.css">
 </head>
 <body>
+    <div class="header">
+        <nav>
+            <div class="logo">
+                <img src="/static/img2.png" alt="">
+                <span>Moodify</span>
+            </div>
+            <ul>
+                <li><a href="/">HOME</a></li>
+                <li><a href="#">FEATURES</a></li>
+                <li><a href="#">CONTACT</a></li>
+                <li><a href="#">TEAM-INFO</a></li>
+                <li><a href="#">SUPPORT</a></li>
+            </ul>
+        </nav>
+        <div class="content">
+            <div class="output"> 
     <h1>Capture Your Mood</h1>
-    <video id="video" width="320" height="240" autoplay></video>
-    <canvas id="canvas" width="320" height="240" style="display:none;"></canvas>
-    <button onclick="capture()">Capture</button>
+    <video id="video" width="620" height="640" autoplay></video>
+    <canvas id="canvas" width="620" height="640" style="display:none;"></canvas>
+    <button onclick="capture()" class="btn">Capture</button></div>
+    
 
     <form id="resultForm" action="/result" method="POST" style="display:none;">
         <input type="hidden" name="emotion" id="emotionInput">
@@ -435,17 +453,26 @@
             context.drawImage(video, 0, 0, 320, 240);
             const dataURL = canvas.toDataURL('image/jpeg');
 
-            fetch('/predict', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ image: dataURL })
-            })
-            .then(res => res.json())
-            .then(data => {
-                document.getElementById('emotionInput').value = data.prediction;
-                document.getElementById('resultForm').submit();
-            });
+           fetch('/predict', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ image: dataURL })
+})
+.then(res => res.json())
+.then(data => {
+    if (data.error) {
+        alert("Server error: " + data.error);
+        return;
+    }
+    document.getElementById('emotionInput').value = data.prediction;
+    document.getElementById('resultForm').submit();
+})
+.catch(err => {
+    console.error("Request failed:", err);
+    alert("Failed to connect to server: " + err);
+});
         }
     </script>
+    </div>
 </body>
 </html>

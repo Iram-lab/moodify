@@ -119,6 +119,9 @@ nav:hover ul li a{
 .content h1{
     font-family: Brush Script MT,cursive;
 }
+.content h3{
+    font-family: Brush Script MT,cursive;
+}
 
 @keyframes slideleft{
     0%{
@@ -138,3 +141,5 @@ p.slide-left{
 .links.slide-left{
     animation-delay: 2s;
 }
+
+/* NEW NEW FOR DEPLOYMENT: */

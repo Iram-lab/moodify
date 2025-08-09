@@ -73,37 +73,42 @@ from tensorflow.keras.models import load_model
 
 app = Flask(__name__)
 
-model = load_model('model.h5')  # Adjust path if needed
+model = load_model('final_model.h5')  # Adjust path if needed
 emotion_labels = ['Angry', 'Disgust', 'Fear', 'Happy', 'Sad', 'Surprise', 'Neutral']
 
 @app.route('/')
 def index():
     return render_template('index1.html')
 
-@app.route('/predict', methods=['POST'])
+@app.route("/predict", methods=["POST"])
 def predict():
-    data = request.get_json()
-    if 'image' not in data:
-        return jsonify({'error': 'No image data'})
+    try:
+        data = request.get_json()
+        image_data = data["image"].split(",")[1]  # remove "data:image/jpeg;base64,"
+        img_bytes = base64.b64decode(image_data)
 
-    image_data = data['image'].split(',')[1]
-    img_bytes = base64.b64decode(image_data)
-    np_arr = np.frombuffer(img_bytes, np.uint8)
-    img = cv2.imdecode(np_arr, cv2.IMREAD_COLOR)
+        # Convert to numpy array
+        nparr = np.frombuffer(img_bytes, np.uint8)
+        img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
 
-    face_img = cv2.resize(cv2.cvtColor(img, cv2.COLOR_BGR2GRAY), (48, 48))
-    face_img = face_img.astype('float32') / 255.0
-    face_img = np.reshape(face_img, (1, 48, 48, 1))
+        # Preprocess for model
+        resized = cv2.resize(img, (224, 224))
+        reshaped = resized.reshape(1, 224, 224, 3) / 255.0
+        prediction = model.predict(reshaped)
+        emotions = ['angry', 'disgust', 'fear', 'happy', 'sad', 'neutral', 'surprise']
+        predicted_emotion = emotions[np.argmax(prediction[0])]
 
-    prediction = model.predict(face_img)
-    emotion = emotion_labels[np.argmax(prediction)]
-
+        return jsonify({"prediction": predicted_emotion})
+    except Exception as e:
+        print("Error:", e)
+        return jsonify({"error": str(e)}), 500
     return jsonify({'prediction': emotion})
+
 
 @app.route('/result', methods=['POST'])
 def result():
     emotion = request.form.get('emotion')
-    return render_template('button.html', final_output=emotion)
+    return render_template('buttons.html', final_output=emotion)
 
 @app.route('/templates/buttons', methods = ['GET','POST'])
 def buttons():
