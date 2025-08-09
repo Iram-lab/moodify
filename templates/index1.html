@@ -441,38 +441,44 @@
     </form>
 
     <script>
-        navigator.mediaDevices.getUserMedia({ video: true })
-            .then(stream => {
-                document.getElementById('video').srcObject = stream;
-            });
+    navigator.mediaDevices.getUserMedia({ video: true })
+        .then(stream => {
+            document.getElementById('video').srcObject = stream;
+        });
 
-        function capture() {
-            const video = document.getElementById('video');
-            const canvas = document.getElementById('canvas');
-            const context = canvas.getContext('2d');
-            context.drawImage(video, 0, 0, 320, 240);
-            const dataURL = canvas.toDataURL('image/jpeg');
+    function capture() {
+        const video = document.getElementById('video');
+        const canvas = document.getElementById('canvas');
+        const context = canvas.getContext('2d');
 
-           fetch('/predict', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ image: dataURL })
-})
-.then(res => res.json())
-.then(data => {
-    if (data.error) {
-        alert("Server error: " + data.error);
-        return;
+        // ✅ Resize to 224×224 before sending
+        canvas.width = 224;
+        canvas.height = 224;
+        context.drawImage(video, 0, 0, 224, 224);
+
+        const dataURL = canvas.toDataURL('image/jpeg');
+
+        fetch('/predict', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ image: dataURL })
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.error) {
+                alert("Server error: " + data.error);
+                return;
+            }
+            document.getElementById('emotionInput').value = data.prediction;
+            document.getElementById('resultForm').submit();
+        })
+        .catch(err => {
+            console.error("Request failed:", err);
+            alert("Failed to connect to server: " + err);
+        });
     }
-    document.getElementById('emotionInput').value = data.prediction;
-    document.getElementById('resultForm').submit();
-})
-.catch(err => {
-    console.error("Request failed:", err);
-    alert("Failed to connect to server: " + err);
-});
-        }
-    </script>
-    </div>
+</script>
+</div>
+
 </body>
 </html>
